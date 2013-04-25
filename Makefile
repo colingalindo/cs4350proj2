@@ -1,20 +1,19 @@
 PROJECT_DIR := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
-DATA        := $(PROJECT_DIR)/data
 BIN         := $(PROJECT_DIR)/bin
-BUILD       := $(PROJECT_DIR)/build
-INCLUDE     := $(PROJECT_DIR)/include
 SRC         := $(PROJECT_DIR)/src
 
 CC			:= gcc
 
-all: shell
+myls: $(SRC)/myls.c
+	$(CC) $(SRC)/myls.c -o $(BIN)/myls
+
+mycat: $(SRC)/mycat.c
+	$(CC) $(SRC)/mycat.c -o $(BIN)/mycat
+
+mycp: $(SRC)/mycp.c
+	$(CC) $(SRC)/mycp.c -o $(BIN)/mycp
 
 clean:
-	rm -f $(BUILD)/*.o $(BIN)/shell $(DATA)/*.data
+	rm -f $(BUILD)/*.o $(BIN)/shell $(BIN)/myls $(BIN)/mycat $(BIN)/mycp 
 
-test: $(BIN)/shell
-		$(BIN)/shell
 
-shell: $(BUILD)/shell
-
-$(BIN)/shell:
